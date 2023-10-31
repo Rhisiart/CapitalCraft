@@ -23,7 +23,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
               <div className="px-8 flex items-center h-20 z-40 top-0 sticky">
                 <Search />
               </div>
-              <main className="bg-violet-75/40">
+              <main className="bg-violet-75">
                 <div className="px-10 py-8 h-91screen">
                   {children}
                 </div>
