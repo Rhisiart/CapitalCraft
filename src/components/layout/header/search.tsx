@@ -71,7 +71,7 @@ const Search : React.FC<IProps> = ({}) => {
       <div className="relative">
         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
           <Image 
-              src="search.svg"
+              src="/search.svg"
               alt="Search"
               width={24}
               height={24}
@@ -102,9 +102,10 @@ const Search : React.FC<IProps> = ({}) => {
         <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
         {
           //TODO: When tickers lenght say that no result found
+          //change the style
           tickers && tickers.map(ticker => {
             return (
-              <SearchItem key={ticker.ticker} name={ticker.name} />
+              <SearchItem key={ticker.ticker} name={ticker.name} ticker={ticker.ticker}/>
             )
           })
         }
