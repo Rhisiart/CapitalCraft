@@ -1,6 +1,7 @@
 "use client"
 
-import { ITicker } from "@/model/model";
+
+import { ITicker } from "@/model/ticker";
 import instance from "@/services/instance";
 import Image from "next/image";
 import React from "react";
@@ -105,7 +106,12 @@ const Search : React.FC<IProps> = ({}) => {
           //change the style
           tickers && tickers.map(ticker => {
             return (
-              <SearchItem key={ticker.ticker} name={ticker.name} ticker={ticker.ticker}/>
+              <SearchItem 
+                key={ticker.ticker} 
+                name={ticker.name} 
+                ticker={ticker.ticker}
+                setDisplay={setDisplay}
+              />
             )
           })
         }

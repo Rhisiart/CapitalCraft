@@ -1,6 +1,9 @@
-import { IFiling, ITicker, ITickerDetails } from "@/model/model";
+
+import { IOverviewResponse } from "@/model/response";
+import { ITicker } from "@/model/ticker";
 import instance from "@/services/instance";
-import Image from 'next/image';
+import Image from "next/image";
+
 
 interface IProps {
   params: ITicker
@@ -13,11 +16,18 @@ export async function generateStaticParams() {
 }
 
 export default async function symbol({ params } : IProps) {
-  const filingResponse = await instance.get<IFiling>(`filing/${params.ticker}`);
-  const tickerDetailsResponse = await instance.get<ITickerDetails>(`tickers/${params.ticker}`);
+  const { data } = await instance.get<IOverviewResponse>(`tickers/${params.ticker}/overview`);
 
+  //TODO: Get Icon
+  const icon = await instance.get(
+    `tickers/${params.ticker}/icon/${data.details.branding.icon_url}`, { 
+      responseType: "text",
+      responseEncoding: "base64" 
+    }
+  );
+  
   return (
-    <div className="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+    <div className="my-6 relative flex flex-col min-w-0 break-words bg-white border-0 shadow dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
       <div className="flex-auto p-6">
         <div className="flex flex-wrap -mx-3">
           <div className="flex-none w-auto max-w-full px-3">
@@ -25,8 +35,8 @@ export default async function symbol({ params } : IProps) {
               <Image 
                 width={4}
                 height={4}
-                alt="quote-icon" 
-                src="/vercel.svg" 
+                alt="ticker-icon" 
+                src={`data:image/png;base64,${icon.data}`} 
                 className="w-full shadow-sm rounded-xl"
               />
             </div>
@@ -34,7 +44,7 @@ export default async function symbol({ params } : IProps) {
           <div className="flex-none w-auto max-w-full px-3 my-auto">
             <div className="h-full">
               <h5 className="mb-1 dark:text-white">{params.ticker}</h5>
-              <p className="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">{tickerDetailsResponse.data.name}</p>
+              <p className="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">{data.details.name}</p>
             </div>
           </div>
         </div>
