@@ -17,7 +17,8 @@ const config: Config = {
         '91screen': '91vh'
       },
       colors: {
-        'violet-75': '#E8EDFE'
+        'violet-75': '#E8EDFE',
+        "blue-850": '#1b4bf1'
       }
     },
   },
