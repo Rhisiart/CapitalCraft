@@ -2,11 +2,11 @@ import React from "react";
 
 interface IProps {
   name : string,
-  value: string
+  value: string | number
 }
 
 
-const Keystatsrow : React.FC<IProps> = ({name, value}) => {
+const Keystatsrow : React.FC<IProps> = ({ name, value }) => {
   return(
     <tr>
       <td className="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent dark:border-white/40">

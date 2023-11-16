@@ -24,7 +24,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
                 <Search />
               </div>
               <main className="bg-violet-75/30">
-                <div className="px-10 py-8 h-91screen">
+                <div className="px-10 py-6 h-91screen">
                   {children}
                 </div>
               </main>
