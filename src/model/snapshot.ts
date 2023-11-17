@@ -1,9 +1,6 @@
-interface IDay {
-  c: number; // close
-  h: number; // high
-  l: number; // low
-  o: number; // open
-  v: number; // volume
+import { IAggregateBar, IBar } from "./bar";
+
+interface IDay extends IBar {
   vw: number; // volume weighted average
 }
 
@@ -24,24 +21,11 @@ interface ILastTrade {
   x: number;
 }
 
-interface IMin {
+interface IMin extends IAggregateBar {
   av: number; // average volume
-  c: number; // close
-  h: number; // high
-  l: number; // low
-  n: number; // total trades
-  o: number; // open
-  t: number; // timestamp
-  v: number; // volume
-  vw: number; // volume weighted average
 }
 
-interface IPrevDay {
-  c: number; // close
-  h: number; // high
-  l: number; // low
-  o: number; // open
-  v: number; // volume
+interface IPrevDay extends IBar {
   vw: number; // volume weighted average
 }
 

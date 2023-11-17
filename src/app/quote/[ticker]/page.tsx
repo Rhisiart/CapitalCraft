@@ -1,5 +1,5 @@
 
-import Keystatstable from "@/components/keystats/keystatstable";
+import KeyStatsTable from "@/components/keystats/keystatstable";
 import { IOverviewResponse } from "@/model/response";
 import { ITicker } from "@/model/ticker";
 import instance from "@/services/instance";
@@ -56,10 +56,12 @@ export default async function symbol({ params } : IProps) {
       </div>
       <div className="ml-9 w-3/12">
         <div className="flex flex-col min-w-0 break-words bg-white border-0 shadow dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
-          <Keystatstable 
+          <KeyStatsTable 
             filings={data.filings}
             details={data.details}
-            snapshot={data.snapshot}  
+            snapshot={data.snapshot} 
+            ytd={data.ytd} 
+            currentPrice={data.currentPrice}
           /> 
         </div>
       </div>
